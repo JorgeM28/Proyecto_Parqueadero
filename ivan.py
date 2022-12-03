@@ -42,7 +42,7 @@ ventana = Tk()
 ventana.title("Registro del usuario para ingresar al parqueadero")
 ventana.geometry("800x500")
 
-logo=PhotoImage(file="img/download.png")
+logo=PhotoImage(file="img/parq.jpeg")
 lb_logo = Label(image=logo)
 lb_logo.place(x=480,y=150)
 

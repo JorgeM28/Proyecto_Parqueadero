@@ -52,12 +52,15 @@ lbl =Label(ventana,text="Bienvendido a la UIS por favor ingresa tus datos y los 
 lbl.pack()
 ventana.config(bg="green")
 
+def cancelar():
+    usuario_entry.delete(0, "end")
+    contraseña_entry.delete(0, "end")
 
 def acceder():
     global ventana_acceso, usuario_entry, contraseña_entry
     
     ventana_acceso = Toplevel()
-    ventana_acceso.title("CELADOR")
+    ventana_acceso.title("Login")
     ventana_acceso.resizable(False, False)
 
     usuario_label = Label(ventana_acceso, text="USUARIO:")
@@ -74,35 +77,44 @@ def acceder():
     boton_aceptar.grid(row=2, column=0, padx=10, pady=10, sticky= "W")
     boton_cancelar.grid(row=2, column=1, padx=10, pady=10, sticky= "E")
 
-def cancelar():
-    usuario_entry.delete(0, "end")
-    contraseña_entry.delete(0, "end")
+A = "123456"
+B = "123456"
 
+A = StringVar()
+B = StringVar()  
+usuario_entry= StringVar()
+contraseña_entry=StringVar()
 def aceptar():
-    ventana_sec = Toplevel()
-    ventana_sec.title("VEHICULOS EN EL PARQUEADERO")
-    ventana_sec.geometry("950x500")
-    ventana_sec.config(bg="green")
-    frame_resultados = Frame(ventana_sec)
-    frame_resultados.config(bg="white", width=930, height=480)
-    frame_resultados.place(x=10, y = 10)
-    t_resultados = Text(frame_resultados)
-    t_resultados.config(bg="green", fg="black", font=("Arial",10))
-    t_resultados.place(x=10,y=10, width=910, height= 400)
-    def exit():
-        ventana_sec.destroy()
-    salir_btn =Button(ventana_sec, text="Salir de la ventana", command=exit, width="30", height="2")
-    salir_btn.place(x=360, y=435)
-    salir_borrar=Button(ventana_sec, text="Borrar dato", command=exit, width="30", height="2")
-    salir_borrar.place(x=60, y=435)
-    with open("Registros.txt") as archivo:
-        for linea in archivo:
-            t_resultados.insert(INSERT, linea)
+    if usuario_entry.get == 123456 and contraseña_entry.get==123456:
+        ventana_sec = Toplevel()
+        ventana_sec.title("VEHICULOS EN EL PARQUEADERO")
+        ventana_sec.geometry("950x500")
+        ventana_sec.config(bg="green")
+        frame_resultados = Frame(ventana_sec)
+        frame_resultados.config(bg="white", width=930, height=480)
+        frame_resultados.place(x=10, y = 10)
+        t_resultados = Text(frame_resultados)
+        t_resultados.config(bg="green", fg="black", font=("Arial",10))
+        t_resultados.place(x=10,y=10, width=910, height= 400)
+        def exit():
+            ventana_sec.destroy()
+        salir_btn =Button(ventana_sec, text="Salir de la ventana", command=exit, width="30", height="2")
+        salir_btn.place(x=360, y=435)
+        with open("Registros.txt") as archivo:
+            for linea in archivo:
+                t_resultados.insert(INSERT, linea)
   
+
+    
+
+
+boton = Button(text="ACCEDER",command=acceder, width="10", height="2")
+boton.place(x=0,y=0)
+etiqueta = Label(text="Usuario no introducido")
 
 username_label = Label(text="NOMBRE COMPLETO", bg="#FFEEDD")
 username_label.place(x=22, y=70)
-código_label = Label(text="CÓDIGO o CC", bg="#FFEEDD")
+código_label = Label(text="CÓDIGO", bg="#FFEEDD")
 código_label.place(x=22, y=130)
 tipodevehículo_label = Label(text="TIPO DE VEHÍCULO, ¿CARRO Ó MOTO?", bg="#FFEEDD")
 tipodevehículo_label.place(x=22, y=190)
@@ -132,8 +144,8 @@ tiempo_entry.place(x=22, y=340)
 submit_btn =Button(ventana, text="Cargar datos", command=send_data, width="30", height="2")
 submit_btn.place(x=22, y=390)
 
-mostrar_btn =Button(ventana, text="Acceder", command=acceder, width="10", height="2")
-mostrar_btn.place(x=0, y=0)
+#mostrar_btn =Button(ventana, text="Acceder", command=acceder, width="10", height="2")
+#mostrar_btn.place(x=0, y=0)
 
 salir_btn =Button(ventana, text="Salir de la app", command=salir, width="30", height="2")
 salir_btn.place(x=478, y=390)
